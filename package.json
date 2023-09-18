@@ -4,7 +4,7 @@
     "description": "A simple web app with server-client communication and vibration functionality",
     "main": "server/server.js",
     "engines": {
-        "node": "14.x"
+        "node": "18.x"
     },
     "scripts": {
         "start": "node server/server.js"
