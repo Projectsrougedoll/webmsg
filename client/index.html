@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibration API Example</title>
+</head>
+<body>
+    <h1>Vibration API Example</h1>
+    <p>Press the button below to make your phone vibrate:</p>
+    <button id="vibrateButton">Vibrate</button>
+
+    <script>
+        const vibrateButton = document.getElementById('vibrateButton');
+
+        // Create a WebSocket connection to the server
+        const socket = new WebSocket('ws://localhost:3000');
+
+        socket.onmessage = (event) => {
+            // When a message is received from the server, vibrate the phone
+            if ("vibrate" in navigator) {
+                // Vibrate for 1000 milliseconds (1 second)
+                navigator.vibrate(5000);
+                alert("Vibration API is supported in your browser.")
+            } else {
+                alert("Vibration API is not supported in your browser.");
+            }
+        };
+
+        vibrateButton.addEventListener('click', () => {
+            // Simulate receiving a message by sending a message to the server
+            socket.send('New message received');
+        });
+    </script>
+</body>
+</html>
